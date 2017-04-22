@@ -1,4 +1,5 @@
-grammar heroc;
+grammar Heroc;
+import LexerTokens;
 
 primary_expression : ID
                    | NUMBER
@@ -103,23 +104,22 @@ init_declarator : declarator
                	| declarator '=' initializer ;
 
 type_specifier : LONG
-               	| enum_specifier
-               	| TYPE_NAME ;
+               	| enum_specifier ;
 
 enum_specifier : ENUM '{' enumerator_list '}'
-             	 | ENUM IDENTIFIER '{' enumerator_list '}'
-             	 | ENUM IDENTIFIER ;
+             	 | ENUM ID '{' enumerator_list '}'
+             	 | ENUM ID ;
 
 enumerator_list : enumerator
                	| enumerator_list ',' enumerator ;
 
-enumerator : IDENTIFIER
-           | IDENTIFIER '=' constant_expression	;
+enumerator : ID
+           | ID '=' constant_expression	;
 
 declarator : pointer direct_declarator
            | direct_declarator ;
 
-direct_declarator : IDENTIFIER
+direct_declarator : ID
                  	| '(' declarator ')'
                  	| direct_declarator '[' constant_expression ']'
                  	| direct_declarator '[' ']'
@@ -140,8 +140,8 @@ parameter_declaration : declaration_specifiers declarator
                      	| declaration_specifiers abstract_declarator
                      	| declaration_specifiers ;
 
-identifier_list : IDENTIFIER
-               	| identifier_list ',' IDENTIFIER ;
+identifier_list : ID
+               	| identifier_list ',' ID ;
 
 
 specifier_qualifier_list
@@ -179,7 +179,7 @@ statement : labeled_statement
          	| iteration_statement
          	| jump_statement ;
 
-labeled_statement : IDENTIFIER ':' statement
+labeled_statement : ID ':' statement
                  	| CASE constant_expression ':' statement
                  	| DEFAULT ':' statement	;
 
