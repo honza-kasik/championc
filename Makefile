@@ -1,7 +1,7 @@
 all: compile
 
 compile:
-	antlr4 src/Heroc.g4 
+	antlr4 src/Heroc.g4 -visitor 
 	javac src/Heroc*.java -d target
 
 debug: compile
