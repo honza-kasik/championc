@@ -10,5 +10,5 @@ debug: compile
 clean:
 	rm -f target/*.class
 
-#distclean: clean
-#	pushd src; rm -f *.java *.tokens; popd
+distclean: clean
+	pushd src; rm -f *.tokens; popd
