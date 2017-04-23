@@ -44,7 +44,7 @@ OR_ASSIGN : '|=';
 ELLIPSIS : '...';
 
 //whitespace
-WS : [ \t]+ -> skip ;
+WS : [ \n\t]+ -> skip ;
 
 //number
 NUMBER
