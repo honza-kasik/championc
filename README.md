@@ -1,7 +1,8 @@
-## Prepare environment
+## Using Maven
 
-Requirements: UNIX and Bash.
-
-```
-source prepare-env.sh
-```
+1. Generate classes:
+    ```
+    mvn clean compile
+    ```
+    
+1. Code!
