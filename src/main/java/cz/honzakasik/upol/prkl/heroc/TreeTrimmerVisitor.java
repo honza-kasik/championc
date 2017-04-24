@@ -1,5 +1,6 @@
-package cz.honzakasik.upol.prkl.herocantlr;
+package cz.honzakasik.upol.prkl.heroc;
 
 public class TreeTrimmerVisitor extends HerocBaseVisitor {
+
 
 }

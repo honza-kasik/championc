@@ -12,7 +12,7 @@ if [ ! -f "${ANTLR_JAR}" ]; then
     curl -O "http://www.antlr.org/download/${ANTLR_JAR}"
 fi
 
-export CLASSPATH=".:${ANTLR_JAR_PATH}:$CLASSPATH"
+export CLASSPATH=".:${ANTLR_JAR_PATH}:${DIR}/target/classes/cz/honzakasik/upol/prkl/heroc:$CLASSPATH"
 
 alias antlr4="java -Xmx500M -cp \"${ANTLR_JAR_PATH}:$CLASSPATH\" org.antlr.v4.Tool"
 alias grun='java org.antlr.v4.gui.TestRig'
