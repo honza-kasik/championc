@@ -7,6 +7,7 @@ public class TranslationUnit {
     private List<Declaration> declarations;
     private List<FunctionDefinition> functionDefinitions;
 
+    //TODO environment??
     public TranslationUnit(List<Declaration> declarations, List<FunctionDefinition> functionDefinitions) {
         this.declarations = declarations;
         this.functionDefinitions = functionDefinitions;
