@@ -25,12 +25,12 @@ unaryExpression
     : postfixExpression
     | INC_OP unaryExpression
     | DEC_OP unaryExpression
-    | unary_operator unaryExpression
+    | unaryOperator unaryExpression
     | SIZEOF unaryExpression
     | SIZEOF '(' typeName ')'
     ;
 
-unary_operator
+unaryOperator
     : '&'
     | '*'
     | '+'
@@ -122,8 +122,7 @@ assignmentOperator
     ;
 
 expression
-    : assignmentExpression
-    | expression ',' assignmentExpression
+    : assignmentExpression (',' assignmentExpression)*
     ;
 
 constantExpression
@@ -165,13 +164,11 @@ pointer
     ;
 
 parameterTypeList
-    : parameterList
-    | parameterList ',' ELLIPSIS
+    : parameterList (',' ELLIPSIS)?
     ;
 
 parameterList
-    : parameterDeclaration
-    | parameterList ',' parameterDeclaration
+    : parameterDeclaration (',' parameterDeclaration)*
     ;
 
 parameterDeclaration
@@ -214,8 +211,7 @@ initializer
     ;
 
 initializerList
-    : initializer
-    | initializerList ',' initializer
+    : initializer (',' initializer)*
     ;
 
 statement
@@ -238,20 +234,18 @@ compoundStatement
     ;
 
 expressionStatement
-    : ';'
-    | expression ';' ;
+    : expression? ';'
+    ;
 
 selectionStatement
-    : IF '(' expression ')' statement
-    | IF '(' expression ')' statement ELSE statement
+    : IF '(' expression ')' statement (ELSE statement)?
    	| SWITCH '(' expression ')' statement
    	;
 
 iterationStatement
     : WHILE '(' expression ')' statement
     | DO statement WHILE '(' expression ')' ';'
-    | FOR '(' expressionStatement expressionStatement ')' statement
-    | FOR '(' expressionStatement expressionStatement expression ')' statement
+    | FOR '(' expressionStatement expressionStatement expression? ')' statement
     ;
 
 jumpStatement

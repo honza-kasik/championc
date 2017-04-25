@@ -4,7 +4,6 @@ import cz.honzakasik.upol.prkl.heroc.model.FunctionDefinition;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.function.Function;
 
 public class Environment {
 
@@ -40,6 +39,7 @@ public class Environment {
         return parentEnvironment == null;
     }
 
+    //TODO write unit tests
     public boolean isFunctionDefinitionAlreadyDefined(FunctionDefinition definition) {
         Environment environment = this;
         while (!environment.isGlobalEnvironment()) {
