@@ -1,6 +1,6 @@
 package cz.honzakasik.upol.prkl.heroc.environment;
 
-import cz.honzakasik.upol.prkl.heroc.model.FunctionDefinition;
+import cz.honzakasik.upol.prkl.heroc.model.function.FunctionDefinition;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -32,6 +32,7 @@ public class Environment {
     }
 
     public void addFunctionDefinition(FunctionDefinition functionDefinition) {
+        checkIfFunctionIsAlreadyDefinedInHierarchy(functionDefinition);
         functionDefinitions.add(functionDefinition);
     }
 
@@ -40,7 +41,12 @@ public class Environment {
     }
 
     //TODO write unit tests
-    public boolean isFunctionDefinitionAlreadyDefined(FunctionDefinition definition) {
+    /**
+     * Goes up to the global environment and checks whether there is a function with same signature
+     * @param definition
+     * @return true if it is defined somewhere in hierarchy, false itherwise
+     */
+    public boolean isFunctionDefinitionAlreadyDefinedInHierarchy(FunctionDefinition definition) {
         Environment environment = this;
         while (!environment.isGlobalEnvironment()) {
             if (environment.getFunctionDefinitions().contains(definition)) {
@@ -54,8 +60,8 @@ public class Environment {
         return false;
     }
 
-    public void checkIfFunctionIsAlreadyDefined(FunctionDefinition definition) throws FunctionAlreadyDefinedException {
-        if (isFunctionDefinitionAlreadyDefined(definition)) {
+    private void checkIfFunctionIsAlreadyDefinedInHierarchy(FunctionDefinition definition) throws FunctionAlreadyDefinedException {
+        if (isFunctionDefinitionAlreadyDefinedInHierarchy(definition)) {
             throw new FunctionAlreadyDefinedException();
         }
     }

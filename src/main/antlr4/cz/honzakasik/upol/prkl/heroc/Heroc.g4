@@ -159,6 +159,10 @@ directDeclarator
     | directDeclarator '(' ')'
     ;
 
+functionArgumentList
+    : '(' identifierList ')'
+    ;
+
 pointer
     : '*'+
     ;
@@ -259,5 +263,5 @@ translationUnit
     ;
 
 functionDefinition
-    : typeSpecifier* declarator declaration* compoundStatement
+    : functionName=ID functionArgumentList functionBody=compoundStatement
     ;

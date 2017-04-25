@@ -1,4 +1,4 @@
 package cz.honzakasik.upol.prkl.heroc.environment;
 
-public class FunctionAlreadyDefinedException extends Exception {
+public class FunctionAlreadyDefinedException extends RuntimeException {
 }
