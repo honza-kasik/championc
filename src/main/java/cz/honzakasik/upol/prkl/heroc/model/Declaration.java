@@ -1,20 +1,16 @@
 package cz.honzakasik.upol.prkl.heroc.model;
 
+import java.util.List;
+
 public class Declaration {
 
-    private String symbolName;
-    private String initializedValue;
+    private final List<InitDeclarator> initDeclarators;
 
-    public Declaration(String symbolName, String initializedValue) {
-        this.symbolName = symbolName;
-        this.initializedValue = initializedValue;
+    public Declaration(List<InitDeclarator> initDeclarators) {
+        this.initDeclarators = initDeclarators;
     }
 
-    public String getSymbolName() {
-        return symbolName;
-    }
-
-    public String getInitializedValue() {
-        return initializedValue;
+    public List<InitDeclarator> getInitDeclarators() {
+        return initDeclarators;
     }
 }

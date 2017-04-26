@@ -11,14 +11,9 @@ postfixExpression
     : primaryExpression
     | postfixExpression '[' expression ']'
     | postfixExpression '(' ')'
-    | postfixExpression '(' argumentExpressionList ')'
+    | postfixExpression '('  expression assignmentOperator expression (','  expression assignmentOperator expression)* ')'
     | postfixExpression INC_OP
     | postfixExpression DEC_OP
-    ;
-
-argumentExpressionList
-    : assignmentExpression
-    | argumentExpressionList ',' assignmentExpression
     ;
 
 unaryExpression
@@ -39,74 +34,6 @@ unaryOperator
     | '!'
     ;
 
-multiplicativeExpression
-    : unaryExpression
-    | multiplicativeExpression '*' unaryExpression
-    | multiplicativeExpression '/' unaryExpression
-    | multiplicativeExpression '%' unaryExpression
-    ;
-
-additiveExpression
-    : multiplicativeExpression
-    | additiveExpression '+' multiplicativeExpression
-    | additiveExpression '-' multiplicativeExpression
-    ;
-
-shiftExpression
-    : additiveExpression
-    | shiftExpression LEFT_OP additiveExpression
-    | shiftExpression RIGHT_OP additiveExpression
-    ;
-
-relationalExpression
-    : shiftExpression
-    | relationalExpression '<' shiftExpression
-    | relationalExpression '>' shiftExpression
-    | relationalExpression LE_OP shiftExpression
-    | relationalExpression GE_OP shiftExpression
-    ;
-
-equalityExpression
-    : relationalExpression
-    | equalityExpression EQ_OP relationalExpression
-    | equalityExpression NE_OP relationalExpression
-    ;
-
-andExpression
-    : equalityExpression
-    | andExpression '&' equalityExpression
-    ;
-
-
-exclusiveOrExpression
-    : andExpression
-    | exclusiveOrExpression '^' andExpression
-    ;
-
-inclusiveOrExpression
-    : exclusiveOrExpression
-    | inclusiveOrExpression '|' exclusiveOrExpression
-    ;
-
-logicalAndExpression
-    : inclusiveOrExpression
-    | logicalAndExpression AND_OP inclusiveOrExpression
-    ;
-
-logicalOrExpression
-    : logicalAndExpression
-    | logicalOrExpression OR_OP logicalAndExpression
-    ;
-
-conditionalExpression
-    : logicalOrExpression
-    | logicalOrExpression '?' expression ':' conditionalExpression
-    ;
-
-assignmentExpression
-    : conditionalExpression
-    | unaryExpression assignmentOperator assignmentExpression ;
-
 assignmentOperator
     : '='
     | MUL_ASSIGN
@@ -122,27 +49,28 @@ assignmentOperator
     ;
 
 expression
-    : assignmentExpression (',' assignmentExpression)*
-    ;
-
-constantExpression
-    : conditionalExpression
+    : primaryExpression                                     #PrimaryExpressionL
+    | expression cmd=('*'|'/'|'%')              expression  #MultiplicativeExpression
+    | expression cmd=('+'|'-')                  expression  #AdditiveExpression
+    | expression cmd=(LEFT_OP | RIGHT_OP)       expression  #ShiftExpression
+    | expression cmd=('<' | '>' | LE_OP | GE_OP)expression  #RelationalExpression
+    | expression cmd=(EQ_OP | NE_OP)            expression  #EqualityExpression
+    | expression cmd='&'                        expression  #AndExpression
+    | expression cmd='^'                        expression  #ExclusiveOrExpression
+    | expression cmd='|'                        expression  #InclusiveOrExpression
+    | expression cmd=AND_OP                     expression  #LogicalAndExpression
+    | expression cmd=OR_OP                      expression  #LogicalOrExpression
+    | expression '?' expression ':' expression              #ConditionalExpression
+    | unaryExpression                                       #UnaryExpressionL
+    | expression cmd=assignmentOperator expression          #AssignmentExpression
     ;
 
 declaration
-    : initDeclaratorList
-    ;
-
-initDeclaratorList
-    : initDeclarator (',' initDeclarator)*
+    : initDeclarator (',' initDeclarator)* ';'
     ;
 
 initDeclarator
-    : declarator ('=' initializer)?
-    ;
-
-typeSpecifier
-    : LONG
+    : LONG? declarator ('=' initializer)?
     ;
 
 declarator
@@ -152,44 +80,26 @@ declarator
 directDeclarator
     : ID
     | '(' declarator ')'
-    | directDeclarator '[' constantExpression ']'
-    | directDeclarator '[' ']'
-    | directDeclarator '(' parameterTypeList ')'
-    | directDeclarator '(' identifierList ')'
+    | directDeclarator '[' expression? ']'
+    | directDeclarator '(' parameterDeclaration (',' parameterDeclaration)* ')'
+    | directDeclarator '(' ID (',' ID)* ')'
     | directDeclarator '(' ')'
     ;
 
 functionArgumentList
-    : '(' identifierList ')'
+    : '(' (ID (',' ID)*)? ')'
     ;
 
 pointer
     : '*'+
     ;
 
-parameterTypeList
-    : parameterList (',' ELLIPSIS)?
-    ;
-
-parameterList
-    : parameterDeclaration (',' parameterDeclaration)*
-    ;
-
 parameterDeclaration
-    : typeSpecifier+ (declarator | abstractDeclarator)?
+    : LONG (declarator | abstractDeclarator)?
     ;
-
-identifierList
-    : ID (',' ID)*
-    ;
-
-
-specifierQualifierList
-	: typeSpecifier+
-	;
 
 typeName
-    : specifierQualifierList abstractDeclarator?
+    : LONG abstractDeclarator?
     ;
 
 abstractDeclarator
@@ -199,23 +109,18 @@ abstractDeclarator
 directAbstractDeclarator
     : '(' abstractDeclarator ')'
     | '[' ']'
-    | '[' constantExpression ']'
+    | '[' expression ']'
     | directAbstractDeclarator '[' ']'
-    | directAbstractDeclarator '[' constantExpression ']'
+    | directAbstractDeclarator '[' expression ']'
     | '(' ')'
-    | '(' parameterTypeList ')'
+    | '(' parameterDeclaration (',' parameterDeclaration)* ')'
     | directAbstractDeclarator '(' ')'
-    | directAbstractDeclarator '(' parameterTypeList ')'
+    | directAbstractDeclarator '(' parameterDeclaration (',' parameterDeclaration)* ')'
     ;
 
 initializer
-    : assignmentExpression
-    | '{' initializerList '}'
-    | '{' initializerList ',' '}'
-    ;
-
-initializerList
-    : initializer (',' initializer)*
+    : expression
+    | '{' initializer (',' initializer)* ','? '}'
     ;
 
 statement
@@ -229,7 +134,7 @@ statement
 
 labeledStatement
     : ID ':' statement
-    | CASE constantExpression ':' statement
+    | CASE expression ':' statement
     | DEFAULT ':' statement
     ;
 

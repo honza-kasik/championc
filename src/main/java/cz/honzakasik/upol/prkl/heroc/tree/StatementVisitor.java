@@ -5,12 +5,13 @@ import cz.honzakasik.upol.prkl.heroc.HerocParser;
 import cz.honzakasik.upol.prkl.heroc.environment.Environment;
 import cz.honzakasik.upol.prkl.heroc.model.statement.Statement;
 
+//TODO Override methods
 public class StatementVisitor extends HerocBaseVisitor<Statement> {
 
     private Environment environment;
 
     public StatementVisitor(Environment parentEnvironment) {
-        this.environment = new Environment(parentEnvironment);
+
     }
 
     @Override
