@@ -4,6 +4,8 @@ import cz.honzakasik.upol.prkl.heroc.HerocBaseVisitor;
 import cz.honzakasik.upol.prkl.heroc.HerocParser;
 import cz.honzakasik.upol.prkl.heroc.environment.Environment;
 import cz.honzakasik.upol.prkl.heroc.model.ParameterDeclaration;
+import cz.honzakasik.upol.prkl.heroc.tree.declarator.AbstractDeclaratorVisitor;
+import cz.honzakasik.upol.prkl.heroc.tree.declarator.DeclaratorVisitor;
 
 public class ParameterDeclarationVisitor extends HerocBaseVisitor<ParameterDeclaration>{
 

@@ -1,9 +1,11 @@
-package cz.honzakasik.upol.prkl.heroc.tree;
+package cz.honzakasik.upol.prkl.heroc.tree.declarator;
 
 import cz.honzakasik.upol.prkl.heroc.HerocBaseVisitor;
 import cz.honzakasik.upol.prkl.heroc.HerocParser;
 import cz.honzakasik.upol.prkl.heroc.environment.Environment;
-import cz.honzakasik.upol.prkl.heroc.model.InitDeclarator;
+import cz.honzakasik.upol.prkl.heroc.model.declarator.InitDeclarator;
+import cz.honzakasik.upol.prkl.heroc.tree.InitializerVisitor;
+import cz.honzakasik.upol.prkl.heroc.tree.TypeSpecifierVisitor;
 
 public class InitDeclaratorVisitor extends HerocBaseVisitor<InitDeclarator> {
 

@@ -3,9 +3,10 @@ package cz.honzakasik.upol.prkl.heroc.tree;
 import cz.honzakasik.upol.prkl.heroc.HerocBaseVisitor;
 import cz.honzakasik.upol.prkl.heroc.HerocParser;
 import cz.honzakasik.upol.prkl.heroc.environment.Environment;
-import cz.honzakasik.upol.prkl.heroc.model.Declaration;
+import cz.honzakasik.upol.prkl.heroc.model.declarator.Declaration;
 import cz.honzakasik.upol.prkl.heroc.model.function.FunctionDefinition;
 import cz.honzakasik.upol.prkl.heroc.model.TranslationUnit;
+import cz.honzakasik.upol.prkl.heroc.tree.declarator.DeclarationVisitor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

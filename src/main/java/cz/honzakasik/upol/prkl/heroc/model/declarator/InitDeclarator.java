@@ -1,4 +1,7 @@
-package cz.honzakasik.upol.prkl.heroc.model;
+package cz.honzakasik.upol.prkl.heroc.model.declarator;
+
+import cz.honzakasik.upol.prkl.heroc.model.Initializer;
+import cz.honzakasik.upol.prkl.heroc.model.TypeSpecifier;
 
 public class InitDeclarator {
 

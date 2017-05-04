@@ -1,5 +1,7 @@
 package cz.honzakasik.upol.prkl.heroc.model;
 
+import cz.honzakasik.upol.prkl.heroc.model.declarator.AbstractDeclarator;
+import cz.honzakasik.upol.prkl.heroc.model.declarator.Declarator;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
 public class ParameterDeclaration {

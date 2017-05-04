@@ -7,6 +7,8 @@ import cz.honzakasik.upol.prkl.heroc.environment.Environment;
 import cz.honzakasik.upol.prkl.heroc.model.function.FunctionDefinition;
 import cz.honzakasik.upol.prkl.heroc.model.function.FunctionSignature;
 import cz.honzakasik.upol.prkl.heroc.model.statement.CompoundStatement;
+import cz.honzakasik.upol.prkl.heroc.tree.declarator.DeclarationVisitor;
+import cz.honzakasik.upol.prkl.heroc.tree.statement.StatementVisitor;
 
 import java.util.stream.Collectors;
 

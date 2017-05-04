@@ -1,13 +1,13 @@
 package cz.honzakasik.upol.prkl.heroc.model.statement;
 
-import cz.honzakasik.upol.prkl.heroc.model.Declaration;
+import cz.honzakasik.upol.prkl.heroc.model.declarator.Declaration;
 
 import java.util.List;
 
 /**
  * Block statement with its own environment
  */
-public class CompoundStatement {
+public class CompoundStatement implements Statement {
 
     private List<Declaration> declarations;
     private List<Statement> statements;

@@ -1,5 +1,7 @@
-package cz.honzakasik.upol.prkl.heroc.model;
+package cz.honzakasik.upol.prkl.heroc.model.declarator;
 
+import cz.honzakasik.upol.prkl.heroc.model.expression.Expression;
+import cz.honzakasik.upol.prkl.heroc.model.ParameterDeclaration;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
 import java.util.List;

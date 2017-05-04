@@ -124,18 +124,11 @@ initializer
     ;
 
 statement
-    : labeledStatement
-    | compoundStatement
+    : compoundStatement
     | expressionStatement
     | selectionStatement
     | iterationStatement
     | jumpStatement
-    ;
-
-labeledStatement
-    : ID ':' statement
-    | CASE expression ':' statement
-    | DEFAULT ':' statement
     ;
 
 compoundStatement
@@ -148,20 +141,19 @@ expressionStatement
 
 selectionStatement
     : IF '(' expression ')' statement (ELSE statement)?
-   	| SWITCH '(' expression ')' statement
    	;
 
 iterationStatement
     : WHILE '(' expression ')' statement
     | DO statement WHILE '(' expression ')' ';'
-    | FOR '(' expressionStatement expressionStatement expression? ')' statement
+    | FOR '(' expression? ';' expression? ';' expression? ')' statement
     ;
 
 jumpStatement
     : CONTINUE ';'
     | BREAK ';'
-    | RETURN ';'
-    | RETURN expression ';' ;
+    | RETURN expression? ';'
+    ;
 
 translationUnit
     : (functionDefinition | declaration)*

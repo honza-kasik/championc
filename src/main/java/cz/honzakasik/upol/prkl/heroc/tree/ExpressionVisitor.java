@@ -3,7 +3,7 @@ package cz.honzakasik.upol.prkl.heroc.tree;
 import cz.honzakasik.upol.prkl.heroc.HerocBaseVisitor;
 import cz.honzakasik.upol.prkl.heroc.HerocParser;
 import cz.honzakasik.upol.prkl.heroc.environment.Environment;
-import cz.honzakasik.upol.prkl.heroc.model.Expression;
+import cz.honzakasik.upol.prkl.heroc.model.expression.Expression;
 
 public class ExpressionVisitor extends HerocBaseVisitor<Expression> {
 

@@ -1,6 +1,7 @@
 package cz.honzakasik.upol.prkl.heroc.model;
 
 import cz.honzakasik.upol.prkl.heroc.environment.Environment;
+import cz.honzakasik.upol.prkl.heroc.model.declarator.Declaration;
 import cz.honzakasik.upol.prkl.heroc.model.function.FunctionDefinition;
 
 import java.util.List;

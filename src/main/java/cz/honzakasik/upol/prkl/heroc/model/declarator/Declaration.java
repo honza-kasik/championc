@@ -1,4 +1,4 @@
-package cz.honzakasik.upol.prkl.heroc.model;
+package cz.honzakasik.upol.prkl.heroc.model.declarator;
 
 import java.util.List;
 

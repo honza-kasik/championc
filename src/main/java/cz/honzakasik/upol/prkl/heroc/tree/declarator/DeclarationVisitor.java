@@ -1,9 +1,9 @@
-package cz.honzakasik.upol.prkl.heroc.tree;
+package cz.honzakasik.upol.prkl.heroc.tree.declarator;
 
 import cz.honzakasik.upol.prkl.heroc.HerocBaseVisitor;
 import cz.honzakasik.upol.prkl.heroc.HerocParser;
 import cz.honzakasik.upol.prkl.heroc.environment.Environment;
-import cz.honzakasik.upol.prkl.heroc.model.Declaration;
+import cz.honzakasik.upol.prkl.heroc.model.declarator.Declaration;
 
 import java.util.stream.Collectors;
 
