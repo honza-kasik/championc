@@ -6,7 +6,7 @@ import cz.honzakasik.upol.prkl.heroc.environment.Environment;
 import cz.honzakasik.upol.prkl.heroc.model.expression.Expression;
 import cz.honzakasik.upol.prkl.heroc.model.statement.IfStatement;
 import cz.honzakasik.upol.prkl.heroc.model.statement.Statement;
-import cz.honzakasik.upol.prkl.heroc.tree.ExpressionVisitor;
+import cz.honzakasik.upol.prkl.heroc.tree.expression.ExpressionVisitor;
 
 public class IfStatementVisitor extends HerocBaseVisitor<IfStatement> {
 

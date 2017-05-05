@@ -7,7 +7,7 @@ import cz.honzakasik.upol.prkl.heroc.model.statement.DoWhileLoop;
 import cz.honzakasik.upol.prkl.heroc.model.statement.ForLoop;
 import cz.honzakasik.upol.prkl.heroc.model.statement.Statement;
 import cz.honzakasik.upol.prkl.heroc.model.statement.WhileLoop;
-import cz.honzakasik.upol.prkl.heroc.tree.ExpressionVisitor;
+import cz.honzakasik.upol.prkl.heroc.tree.expression.ExpressionVisitor;
 import org.antlr.v4.runtime.tree.ParseTree;
 
 public class IterationStatementVisitor extends HerocBaseVisitor<Statement> {

@@ -5,7 +5,7 @@ import cz.honzakasik.upol.prkl.heroc.HerocParser;
 import cz.honzakasik.upol.prkl.heroc.environment.Environment;
 import cz.honzakasik.upol.prkl.heroc.model.statement.JumpStatement;
 import cz.honzakasik.upol.prkl.heroc.model.statement.Statement;
-import cz.honzakasik.upol.prkl.heroc.tree.ExpressionVisitor;
+import cz.honzakasik.upol.prkl.heroc.tree.expression.ExpressionVisitor;
 
 public class StatementVisitor extends HerocBaseVisitor<Statement> {
 

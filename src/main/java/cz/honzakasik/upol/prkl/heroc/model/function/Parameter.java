@@ -1,8 +1,6 @@
 package cz.honzakasik.upol.prkl.heroc.model.function;
 
-import cz.honzakasik.upol.prkl.heroc.model.Variable;
-
-public class Parameter implements Variable {
+public class Parameter {
 
     private String name;
 

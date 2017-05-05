@@ -4,6 +4,7 @@ import cz.honzakasik.upol.prkl.heroc.HerocBaseVisitor;
 import cz.honzakasik.upol.prkl.heroc.HerocParser;
 import cz.honzakasik.upol.prkl.heroc.environment.Environment;
 import cz.honzakasik.upol.prkl.heroc.model.Initializer;
+import cz.honzakasik.upol.prkl.heroc.tree.expression.ExpressionVisitor;
 
 import java.util.stream.Collectors;
 

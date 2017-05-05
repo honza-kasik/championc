@@ -10,8 +10,8 @@ primaryExpression
 postfixExpression
     : primaryExpression
     | postfixExpression '[' expression ']'
-    | postfixExpression '(' ')'
-    | postfixExpression '('  expression assignmentOperator expression (','  expression assignmentOperator expression)* ')'
+//    | postfixExpression '(' ')'
+//    | postfixExpression '('  expression assignmentOperator expression (','  expression assignmentOperator expression)* ')'
     | postfixExpression INC_OP
     | postfixExpression DEC_OP
     ;
@@ -21,7 +21,7 @@ unaryExpression
     | INC_OP unaryExpression
     | DEC_OP unaryExpression
     | unaryOperator unaryExpression
-    | SIZEOF unaryExpression
+//    | SIZEOF unaryExpression
     | SIZEOF '(' typeName ')'
     ;
 
