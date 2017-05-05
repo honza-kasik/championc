@@ -6,7 +6,6 @@ import cz.honzakasik.upol.prkl.heroc.environment.Environment;
 import cz.honzakasik.upol.prkl.heroc.model.expression.ArrayReferenceExpression;
 import cz.honzakasik.upol.prkl.heroc.model.expression.Expression;
 import cz.honzakasik.upol.prkl.heroc.model.expression.arithmetic.PostfixArithmeticExpression;
-import org.antlr.v4.runtime.tree.TerminalNode;
 
 public class PostfixExpressionVisitor extends HerocBaseVisitor<Expression> {
 
@@ -26,8 +25,8 @@ public class PostfixExpressionVisitor extends HerocBaseVisitor<Expression> {
                 );
             } else {
                 return new ArrayReferenceExpression(
-                        ctx.expression(0).accept(new ExpressionVisitor(environment)),
-                        ctx.expression(1).accept(new ExpressionVisitor(environment))
+                        ctx.postfixExpression().accept(new PostfixExpressionVisitor(environment)),
+                        ctx.expression().accept(new ExpressionVisitor(environment))
                 );
             }
         } else {

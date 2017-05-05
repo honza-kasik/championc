@@ -1,6 +1,5 @@
 package cz.honzakasik.upol.prkl.heroc.tree;
 
-import com.sun.istack.internal.NotNull;
 import cz.honzakasik.upol.prkl.heroc.HerocBaseVisitor;
 import cz.honzakasik.upol.prkl.heroc.HerocParser;
 import cz.honzakasik.upol.prkl.heroc.environment.Environment;
@@ -36,7 +35,7 @@ public class FunctionDefinitionVisitor extends HerocBaseVisitor<FunctionDefiniti
         return functionDefinition;
     }
 
-    private CompoundStatement getFunctionBodyFromContext(@NotNull HerocParser.FunctionDefinitionContext ctx) {
+    private CompoundStatement getFunctionBodyFromContext(HerocParser.FunctionDefinitionContext ctx) {
         return new CompoundStatement(
                 ctx.functionBody.declaration().stream()
                     .map(declarationContext -> declarationContext.accept(new DeclarationVisitor(environment)))

@@ -1,7 +1,5 @@
 package cz.honzakasik.upol.prkl.heroc.model.expression;
 
-import cz.honzakasik.upol.prkl.heroc.model.expression.arithmetic.Operator;
-
 public class UnaryExpression implements Expression {
 
     private String operator;

@@ -6,7 +6,6 @@ import cz.honzakasik.upol.prkl.heroc.environment.Environment;
 import cz.honzakasik.upol.prkl.heroc.model.Value;
 import cz.honzakasik.upol.prkl.heroc.model.VariableReference;
 import cz.honzakasik.upol.prkl.heroc.model.expression.*;
-import cz.honzakasik.upol.prkl.heroc.model.expression.arithmetic.Operator;
 
 public class ExpressionVisitor extends HerocBaseVisitor<Expression> {
 
