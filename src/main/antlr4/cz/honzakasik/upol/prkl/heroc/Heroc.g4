@@ -10,8 +10,6 @@ primaryExpression
 postfixExpression
     : primaryExpression
     | postfixExpression '[' expression ']'
-//    | postfixExpression '(' ')'
-//    | postfixExpression '('  expression assignmentOperator expression (','  expression assignmentOperator expression)* ')'
     | postfixExpression INC_OP
     | postfixExpression DEC_OP
     ;
@@ -21,7 +19,6 @@ unaryExpression
     | INC_OP unaryExpression
     | DEC_OP unaryExpression
     | unaryOperator unaryExpression
-//    | SIZEOF unaryExpression
     | SIZEOF '(' typeName ')'
     ;
 
@@ -78,12 +75,12 @@ declarator
     ;
 
 directDeclarator
-    : ID
-    | '(' declarator ')'
-    | directDeclarator '[' expression? ']'
-    | directDeclarator '(' parameterDeclaration (',' parameterDeclaration)* ')'
-    | directDeclarator '(' ID (',' ID)* ')'
-    | directDeclarator '(' ')'
+    : ID #SimpleVariableDeclaration
+//    | '(' declarator ')'
+    | ID ('[' expression? ']')+ #ArrayDeclaration
+//    | directDeclarator '(' parameterDeclaration (',' parameterDeclaration)* ')'
+//    | directDeclarator '(' ID (',' ID)* ')'
+//    | directDeclarator '(' ')'
     ;
 
 functionArgumentList
@@ -129,6 +126,15 @@ statement
     | selectionStatement
     | iterationStatement
     | jumpStatement
+    | functionCallStatement
+    ;
+
+functionCallStatement
+    : ID functionCallArgumentList ';'
+    ;
+
+functionCallArgumentList
+    : (expression? (',' expression)*)
     ;
 
 compoundStatement
