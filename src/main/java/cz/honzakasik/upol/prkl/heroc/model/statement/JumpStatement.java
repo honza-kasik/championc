@@ -1,10 +1,11 @@
 package cz.honzakasik.upol.prkl.heroc.model.statement;
 
+import cz.honzakasik.upol.prkl.heroc.model.Node;
 import cz.honzakasik.upol.prkl.heroc.model.expression.Expression;
 
 import java.util.Optional;
 
-public class JumpStatement implements Statement {
+public class JumpStatement extends Node implements Statement {
 
     public enum Type {
         RETURN("return"),

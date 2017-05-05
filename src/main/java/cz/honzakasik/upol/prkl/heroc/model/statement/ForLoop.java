@@ -1,8 +1,10 @@
 package cz.honzakasik.upol.prkl.heroc.model.statement;
 
+import cz.honzakasik.upol.prkl.heroc.model.Node;
 import cz.honzakasik.upol.prkl.heroc.model.expression.Expression;
+import cz.honzakasik.upol.prkl.heroc.printer.OutputBuilder;
 
-public class ForLoop implements Statement{
+public class ForLoop extends Node implements Statement{
 
     private Expression initializer;
     private Expression condition;
@@ -30,5 +32,10 @@ public class ForLoop implements Statement{
 
     public Statement getCycle() {
         return cycle;
+    }
+
+    @Override
+    public void appendStringRepresentationToBuilder(OutputBuilder outputBuilder, int depth) {
+        //TODO
     }
 }

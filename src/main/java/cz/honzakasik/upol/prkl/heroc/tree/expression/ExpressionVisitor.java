@@ -20,7 +20,11 @@ public class ExpressionVisitor extends HerocBaseVisitor<Expression> {
         if (ctx.ID() != null) {
             return new VariableReference(ctx.ID().getText());
         } else if (ctx.NUMBER() != null) {
-            return new Value(Long.valueOf(ctx.NUMBER().getText()));
+            return new Value(ctx.NUMBER().getText());
+        } else if (ctx.STRING() != null) {
+            return new Value(ctx.STRING().getText());
+        } else if (ctx.CHAR_CONSTANT() != null) {
+            return new Value(ctx.CHAR_CONSTANT().getText());
         } else {
             return ctx.expression().accept(new ExpressionVisitor(environment));
         }

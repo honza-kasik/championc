@@ -1,9 +1,12 @@
 package cz.honzakasik.upol.prkl.heroc.model.function;
 
+import cz.honzakasik.upol.prkl.heroc.model.Node;
+import cz.honzakasik.upol.prkl.heroc.printer.OutputBuilder;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class FunctionSignature {
+public class FunctionSignature extends Node {
 
     private String name;
     private List<Parameter> parameters;
@@ -22,7 +25,9 @@ public class FunctionSignature {
     }
 
     @Override
-    public String toString() {
-        return name + '(' + parameters.stream().map(Parameter::getName).collect(Collectors.joining(",")) + ')';
+    public void appendStringRepresentationToBuilder(OutputBuilder outputBuilder, int depth) {
+        outputBuilder.append(this.getClass(), depth)
+                .append("name: '" + name + "'", depth + 1);
+        parameters.forEach(parameter -> parameter.appendStringRepresentationToBuilder(outputBuilder, depth + 1));
     }
 }

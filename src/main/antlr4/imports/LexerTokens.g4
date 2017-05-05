@@ -43,19 +43,16 @@ OR_ASSIGN : '|=';
 
 ELLIPSIS : '...';
 
-//whitespace
-WS : [ \n\t]+ -> skip ;
-
 //number
 NUMBER
     : DEC
-    | HEX
-    | OCT
+    | HEX {setText(String.valueOf(Long.parseLong(getText().substring(2), 16)));}
+    | OCT {setText(String.valueOf(Long.parseLong(getText(), 8)));}
     ;
 
 fragment DIGIT : [0-9];
 fragment FIXNUM : DIGIT+;
-fragment HEXDIGIT : DIGIT | |[a-fA-F];
+fragment HEXDIGIT : DIGIT | [a-fA-F];
 fragment HEXFIXNUM : '0'[xX]HEXDIGIT+;
 
 fragment DEC : FIXNUM;
@@ -67,5 +64,12 @@ ID : ('_'| LETTER )( DIGIT | '_' | LETTER )*;
 
 fragment LETTER : [a-zA-Z];
 
+CHAR_CONSTANT:          '\'' CHAR_SYMBOL '\'';
+STRING:                 '\\"' (CHAR_SYMBOL | ESCAPE)* '\\"';
+fragment ESCAPE:        '\\' CHAR_SYMBOL;
+fragment CHAR_SYMBOL:   '\u0000' .. '\u007F';
 
-
+//ignore
+NEWLINE :   '\r'? '\n' -> skip;
+COMMENT :   '/*' .*? '*/' -> skip;
+WS      :   [ \n\t]+ -> skip ;

@@ -3,9 +3,15 @@ package cz.honzakasik.upol.prkl.heroc.tree.statement;
 import cz.honzakasik.upol.prkl.heroc.HerocBaseVisitor;
 import cz.honzakasik.upol.prkl.heroc.HerocParser;
 import cz.honzakasik.upol.prkl.heroc.environment.Environment;
+import cz.honzakasik.upol.prkl.heroc.model.expression.Expression;
+import cz.honzakasik.upol.prkl.heroc.model.statement.FunctionCallStatement;
 import cz.honzakasik.upol.prkl.heroc.model.statement.JumpStatement;
 import cz.honzakasik.upol.prkl.heroc.model.statement.Statement;
 import cz.honzakasik.upol.prkl.heroc.tree.expression.ExpressionVisitor;
+
+import java.util.LinkedList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class StatementVisitor extends HerocBaseVisitor<Statement> {
 
@@ -52,5 +58,21 @@ public class StatementVisitor extends HerocBaseVisitor<Statement> {
         } else {
             return new JumpStatement(type);
         }
+    }
+
+    @Override
+    public Statement visitFunctionCallStatement(HerocParser.FunctionCallStatementContext ctx) {
+        List<Expression> argumentList = new LinkedList<>();
+
+        if (ctx.functionCallArgumentList().expression().size() > 0) {
+            argumentList = ctx.functionCallArgumentList().expression().stream()
+                    .map(expressionContext -> expressionContext.accept(new ExpressionVisitor(environment)))
+                    .collect(Collectors.toList());
+        }
+
+        return new FunctionCallStatement(
+                ctx.ID().getText(),
+                argumentList
+        );
     }
 }

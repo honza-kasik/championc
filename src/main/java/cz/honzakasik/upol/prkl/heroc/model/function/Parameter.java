@@ -1,6 +1,9 @@
 package cz.honzakasik.upol.prkl.heroc.model.function;
 
-public class Parameter {
+import cz.honzakasik.upol.prkl.heroc.model.Node;
+import cz.honzakasik.upol.prkl.heroc.printer.OutputBuilder;
+
+public class Parameter extends Node {
 
     private String name;
 
@@ -10,5 +13,10 @@ public class Parameter {
 
     public String getName() {
         return name;
+    }
+
+    @Override
+    public void appendStringRepresentationToBuilder(OutputBuilder outputBuilder, int depth) {
+        outputBuilder.append("parameter: {name: " + name + "}", depth);
     }
 }

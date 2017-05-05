@@ -1,6 +1,9 @@
 package cz.honzakasik.upol.prkl.heroc.model.expression;
 
-public class ConditionalExpression implements Expression {
+import cz.honzakasik.upol.prkl.heroc.model.Node;
+import cz.honzakasik.upol.prkl.heroc.printer.OutputBuilder;
+
+public class ConditionalExpression extends Node implements Expression {
 
     private Expression condition;
     private Expression trueBranch;
@@ -22,5 +25,16 @@ public class ConditionalExpression implements Expression {
 
     public Expression getFalseBranch() {
         return falseBranch;
+    }
+
+    @Override
+    public void appendStringRepresentationToBuilder(OutputBuilder outputBuilder, int depth) {
+        outputBuilder.append(ConditionalExpression.class, depth)
+                .append("condition:", depth);
+        condition.appendStringRepresentationToBuilder(outputBuilder, depth + 1);
+        outputBuilder.append("trueBranch", depth);
+        trueBranch.appendStringRepresentationToBuilder(outputBuilder, depth + 1);
+        outputBuilder.append("falseBranch", depth);
+        falseBranch.appendStringRepresentationToBuilder(outputBuilder, depth + 1);
     }
 }

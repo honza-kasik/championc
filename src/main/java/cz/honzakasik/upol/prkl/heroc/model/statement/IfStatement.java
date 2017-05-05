@@ -1,10 +1,11 @@
 package cz.honzakasik.upol.prkl.heroc.model.statement;
 
+import cz.honzakasik.upol.prkl.heroc.model.Node;
 import cz.honzakasik.upol.prkl.heroc.model.expression.Expression;
 
 import java.util.Optional;
 
-public class IfStatement implements Statement {
+public class IfStatement extends Node implements Statement {
 
     private Expression condition;
     private final Statement trueStatement;

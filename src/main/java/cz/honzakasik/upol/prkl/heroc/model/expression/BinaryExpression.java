@@ -1,6 +1,9 @@
 package cz.honzakasik.upol.prkl.heroc.model.expression;
 
-public class BinaryExpression implements Expression{
+import cz.honzakasik.upol.prkl.heroc.model.Node;
+import cz.honzakasik.upol.prkl.heroc.printer.OutputBuilder;
+
+public class BinaryExpression extends Node implements Expression{
 
     private Expression leftSide;
     private Expression rightSide;
@@ -22,5 +25,15 @@ public class BinaryExpression implements Expression{
 
     public String getOperator() {
         return operator;
+    }
+
+
+    @Override
+    public void appendStringRepresentationToBuilder(OutputBuilder outputBuilder, int depth) {
+        outputBuilder.append(this.getClass().getSimpleName() + ":", depth)
+                .append("leftSide:", depth);
+        leftSide.appendStringRepresentationToBuilder(outputBuilder, depth + 1);
+        outputBuilder.append("rightSide:", depth);
+        rightSide.appendStringRepresentationToBuilder(outputBuilder, depth + 1);
     }
 }

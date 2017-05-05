@@ -1,8 +1,9 @@
 package cz.honzakasik.upol.prkl.heroc.model.statement;
 
+import cz.honzakasik.upol.prkl.heroc.model.Node;
 import cz.honzakasik.upol.prkl.heroc.model.expression.Expression;
 
-public class SelectionStatement implements Statement {
+public class SelectionStatement extends Node implements Statement {
 
     private Expression condition;
     private Statement primaryStatement;

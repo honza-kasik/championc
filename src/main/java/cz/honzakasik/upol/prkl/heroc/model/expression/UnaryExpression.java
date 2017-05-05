@@ -1,6 +1,9 @@
 package cz.honzakasik.upol.prkl.heroc.model.expression;
 
-public class UnaryExpression implements Expression {
+import cz.honzakasik.upol.prkl.heroc.model.Node;
+import cz.honzakasik.upol.prkl.heroc.printer.OutputBuilder;
+
+public class UnaryExpression extends Node implements Expression {
 
     private String operator;
     private Expression expression;
@@ -16,5 +19,13 @@ public class UnaryExpression implements Expression {
 
     public Expression getExpression() {
         return expression;
+    }
+
+    @Override
+    public void appendStringRepresentationToBuilder(OutputBuilder outputBuilder, int depth) {
+        outputBuilder.append(this.getClass(), depth)
+                .append("operator: \n'" + operator + "'", depth)
+                .append("expression:", depth);
+        expression.appendStringRepresentationToBuilder(outputBuilder, depth);
     }
 }

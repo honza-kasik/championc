@@ -4,6 +4,8 @@ import LexerTokens;
 primaryExpression
     : ID
     | NUMBER
+    | STRING
+    | CHAR_CONSTANT
     | '(' expression ')'
     ;
 
@@ -98,7 +100,7 @@ functionCallStatement
     ;
 
 functionCallArgumentList
-    : (expression? (',' expression)*)
+    : '(' expression? (',' expression)* ')'
     ;
 
 compoundStatement

@@ -28,12 +28,10 @@ public class TranslationUnitVisitor extends HerocBaseVisitor<TranslationUnit> {
 
         final List<Declaration> declarationList = ctx.declaration().stream()
                 .map(declarationContext -> declarationContext.accept(new DeclarationVisitor(globalEnvironment)))
-                .peek(declaration -> log.debug("Visited '{}' declaration.", declaration.getInitDeclarators()))
                 .collect(toList());
 
         final List<FunctionDefinition> functionDefinitions = ctx.functionDefinition().stream()
                 .map(functionDefinitionContext -> functionDefinitionContext.accept(new FunctionDefinitionVisitor(globalEnvironment)))
-                .peek(definition -> log.debug("Visited '{}' function definition.", definition.getFunctionSignature().getName()))
                 .collect(toList());
 
         return new TranslationUnit(globalEnvironment, declarationList, functionDefinitions);

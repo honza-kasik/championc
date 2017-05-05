@@ -2,7 +2,7 @@ package cz.honzakasik.upol.prkl.heroc.model;
 
 import cz.honzakasik.upol.prkl.heroc.model.expression.Expression;
 
-public class VariableReference implements Expression {
+public class VariableReference extends Node implements Expression {
 
     private String name;
 

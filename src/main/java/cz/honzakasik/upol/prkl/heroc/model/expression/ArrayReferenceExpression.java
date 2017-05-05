@@ -1,6 +1,9 @@
 package cz.honzakasik.upol.prkl.heroc.model.expression;
 
-public class ArrayReferenceExpression implements Expression {
+import cz.honzakasik.upol.prkl.heroc.model.Node;
+import cz.honzakasik.upol.prkl.heroc.printer.OutputBuilder;
+
+public class ArrayReferenceExpression extends Node implements Expression {
 
     private Expression identifierExpression;
     private Expression referenceExpression;
@@ -16,5 +19,15 @@ public class ArrayReferenceExpression implements Expression {
 
     public Expression getReferenceExpression() {
         return referenceExpression;
+    }
+
+
+    @Override
+    public void appendStringRepresentationToBuilder(OutputBuilder outputBuilder, int depth) {
+        outputBuilder.append(this.getClass().getSimpleName() + ":", depth)
+                .append("identifierExpression:", depth);
+        identifierExpression.appendStringRepresentationToBuilder(outputBuilder, depth + 1);
+        outputBuilder.append("referenceExpression:", depth);
+        referenceExpression.appendStringRepresentationToBuilder(outputBuilder, depth + 1);
     }
 }

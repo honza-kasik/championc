@@ -1,6 +1,6 @@
 package cz.honzakasik.upol.prkl.heroc.model;
 
-public class Pointer {
+public class Pointer extends Node {
 
     private final int count;
 

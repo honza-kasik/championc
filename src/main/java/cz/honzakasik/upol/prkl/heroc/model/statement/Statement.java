@@ -1,4 +1,6 @@
 package cz.honzakasik.upol.prkl.heroc.model.statement;
 
-public interface Statement {
+import cz.honzakasik.upol.prkl.heroc.printer.PrintableNode;
+
+public interface Statement extends PrintableNode{
 }
