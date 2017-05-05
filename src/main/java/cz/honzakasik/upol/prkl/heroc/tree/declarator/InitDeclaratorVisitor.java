@@ -4,7 +4,6 @@ import cz.honzakasik.upol.prkl.heroc.HerocBaseVisitor;
 import cz.honzakasik.upol.prkl.heroc.HerocParser;
 import cz.honzakasik.upol.prkl.heroc.environment.Environment;
 import cz.honzakasik.upol.prkl.heroc.model.declarator.InitDeclarator;
-import cz.honzakasik.upol.prkl.heroc.tree.InitializerVisitor;
 import cz.honzakasik.upol.prkl.heroc.tree.TypeSpecifierVisitor;
 
 public class InitDeclaratorVisitor extends HerocBaseVisitor<InitDeclarator> {
@@ -18,9 +17,10 @@ public class InitDeclaratorVisitor extends HerocBaseVisitor<InitDeclarator> {
     @Override
     public InitDeclarator visitInitDeclarator(HerocParser.InitDeclaratorContext ctx) {
         return new InitDeclarator(
-                ctx.accept(new DeclaratorVisitor(environment)),
+                ctx.directDeclarator().accept(new DirectDeclaratorVisitor(environment)),
+                //TODO add variable declaration to environment
                 ctx.accept(new TypeSpecifierVisitor(environment)),
-                ctx.accept(new InitializerVisitor(environment))
+                ctx.initializer().accept(new InitializerVisitor(environment))
         );
     }
 }

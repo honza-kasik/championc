@@ -19,7 +19,7 @@ unaryExpression
     | INC_OP unaryExpression
     | DEC_OP unaryExpression
     | unaryOperator unaryExpression
-    | SIZEOF '(' typeName ')'
+    | SIZEOF '(' LONG ')'
     ;
 
 unaryOperator
@@ -67,57 +67,21 @@ declaration
     ;
 
 initDeclarator
-    : LONG? declarator ('=' initializer)?
-    ;
-
-declarator
-    : pointer? directDeclarator
+    : LONG? directDeclarator ('=' initializer)?
     ;
 
 directDeclarator
-    : ID #SimpleVariableDeclaration
-//    | '(' declarator ')'
-    | ID ('[' expression? ']')+ #ArrayDeclaration
-//    | directDeclarator '(' parameterDeclaration (',' parameterDeclaration)* ')'
-//    | directDeclarator '(' ID (',' ID)* ')'
-//    | directDeclarator '(' ')'
-    ;
-
-functionArgumentList
-    : '(' (ID (',' ID)*)? ')'
-    ;
-
-pointer
-    : '*'+
-    ;
-
-parameterDeclaration
-    : LONG (declarator | abstractDeclarator)?
-    ;
-
-typeName
-    : LONG abstractDeclarator?
-    ;
-
-abstractDeclarator
-    : pointer? directAbstractDeclarator
-    ;
-
-directAbstractDeclarator
-    : '(' abstractDeclarator ')'
-    | '[' ']'
-    | '[' expression ']'
-    | directAbstractDeclarator '[' ']'
-    | directAbstractDeclarator '[' expression ']'
-    | '(' ')'
-    | '(' parameterDeclaration (',' parameterDeclaration)* ')'
-    | directAbstractDeclarator '(' ')'
-    | directAbstractDeclarator '(' parameterDeclaration (',' parameterDeclaration)* ')'
+    : pointer? ID                        #SimpleVariableDeclaration
+    | pointer? ID ('[' expression? ']')+ #ArrayDeclaration
     ;
 
 initializer
     : expression
     | '{' initializer (',' initializer)* ','? '}'
+    ;
+
+pointer
+    : '*'+
     ;
 
 statement
@@ -167,4 +131,8 @@ translationUnit
 
 functionDefinition
     : functionName=ID functionArgumentList functionBody=compoundStatement
+    ;
+
+functionArgumentList
+    : '(' (ID (',' ID)*)? ')'
     ;
