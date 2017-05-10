@@ -6,7 +6,12 @@ import cz.honzakasik.upol.prkl.heroc.environment.Environment;
 import cz.honzakasik.upol.prkl.heroc.model.Value;
 import cz.honzakasik.upol.prkl.heroc.model.VariableReference;
 import cz.honzakasik.upol.prkl.heroc.model.expression.*;
+import cz.honzakasik.upol.prkl.heroc.model.statement.FunctionCall;
 import cz.honzakasik.upol.prkl.heroc.tree.PointerVisitor;
+
+import java.util.LinkedList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class ExpressionVisitor extends HerocBaseVisitor<Expression> {
 
@@ -135,6 +140,22 @@ public class ExpressionVisitor extends HerocBaseVisitor<Expression> {
                 ctx.getChild(0).accept(new ExpressionVisitor(environment)),
                 ctx.getChild(2).accept(new ExpressionVisitor(environment)),
                 ctx.getChild(1).getText()
+        );
+    }
+
+    @Override
+    public Expression visitFunctionCallExpression(HerocParser.FunctionCallExpressionContext ctx) {
+        List<Expression> argumentList = new LinkedList<>();
+
+        if (ctx.functionCallArgumentList().expression().size() > 0) {
+            argumentList = ctx.functionCallArgumentList().expression().stream()
+                    .map(expressionContext -> expressionContext.accept(new ExpressionVisitor(environment)))
+                    .collect(Collectors.toList());
+        }
+
+        return new FunctionCall(
+                ctx.ID().getText(),
+                argumentList
         );
     }
 }

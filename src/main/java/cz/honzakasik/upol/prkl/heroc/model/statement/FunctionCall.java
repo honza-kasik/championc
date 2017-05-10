@@ -6,12 +6,12 @@ import cz.honzakasik.upol.prkl.heroc.printer.OutputBuilder;
 
 import java.util.List;
 
-public class FunctionCallStatement extends Node implements Statement {
+public class FunctionCall extends Node implements Expression {
 
     private String functionName;
     private List<Expression> arguments;
 
-    public FunctionCallStatement(String functionName, List<Expression> arguments) {
+    public FunctionCall(String functionName, List<Expression> arguments) {
         this.functionName = functionName;
         this.arguments = arguments;
     }

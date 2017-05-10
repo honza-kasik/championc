@@ -62,6 +62,7 @@ expression
     | expression '?' expression ':' expression              #ConditionalExpression
     | unaryExpression                                       #UnaryExpressionL
     | expression cmd=assignmentOperator expression          #AssignmentExpression
+    | functionCallExpression                                #FunctionCallExpressionL
     ;
 
 declaration
@@ -92,11 +93,10 @@ statement
     | selectionStatement
     | iterationStatement
     | jumpStatement
-    | functionCallStatement
     ;
 
-functionCallStatement
-    : ID functionCallArgumentList ';'
+functionCallExpression
+    : ID functionCallArgumentList
     ;
 
 functionCallArgumentList

@@ -80,7 +80,7 @@
                     <mainClass>cz.honzakasik.upol.prkl.heroc.Main</mainClass>
                     <!-- optional -->
                     <arguments>
-                        <argument>/home/honza/Nextcloud/UPOL/Class4/LS/PRKL/heroc-examples/example02.heroc</argument>
+                        <argument>/home/honza/Nextcloud/UPOL/Class4/LS/PRKL/heroc-examples/example11.heroc</argument>
                     </arguments>
                 </configuration>
             </plugin>
