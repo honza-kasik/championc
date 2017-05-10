@@ -27,7 +27,7 @@ public class FunctionDefinitionVisitor extends HerocBaseVisitor<FunctionDefiniti
     public FunctionDefinition visitFunctionDefinition(HerocParser.FunctionDefinitionContext ctx) {
         final FunctionSignature functionSignature = new FunctionSignature(
                 ctx.functionName.getText(),
-                ctx.functionArgumentList().accept(new ParameterListVisitor(environment))
+                ctx.functionArgumentList().accept(new FucntionArgumentListVisitor(environment))
         );
 
         final FunctionDefinition functionDefinition = new FunctionDefinition(functionSignature,

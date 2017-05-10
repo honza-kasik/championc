@@ -2,6 +2,7 @@ package cz.honzakasik.upol.prkl.heroc.model.statement;
 
 import cz.honzakasik.upol.prkl.heroc.model.Node;
 import cz.honzakasik.upol.prkl.heroc.model.expression.Expression;
+import cz.honzakasik.upol.prkl.heroc.printer.OutputBuilder;
 
 public class ExpressionStatement extends Node implements Statement {
 
@@ -11,7 +12,17 @@ public class ExpressionStatement extends Node implements Statement {
         this.expression = expression;
     }
 
+    public ExpressionStatement() {
+    }
+
     public Expression getExpression() {
         return expression;
+    }
+
+    @Override
+    public void appendStringRepresentationToBuilder(OutputBuilder outputBuilder, int depth) {
+        if (expression != null) {
+            expression.appendStringRepresentationToBuilder(outputBuilder, depth);
+        }
     }
 }

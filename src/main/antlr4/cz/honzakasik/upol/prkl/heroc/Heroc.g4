@@ -2,7 +2,7 @@ grammar Heroc;
 import LexerTokens;
 
 primaryExpression
-    : ID
+    : pointer? ID
     | NUMBER
     | STRING
     | CHAR_CONSTANT
@@ -118,7 +118,7 @@ selectionStatement
 iterationStatement
     : WHILE '(' expression ')' statement
     | DO statement WHILE '(' expression ')' ';'
-    | FOR '(' expression? ';' expression? ';' expression? ')' statement
+    | FOR '(' forDeclarator=expression? ';' forCondition=expression? ';' forIterator=expression? ')' statement
     ;
 
 jumpStatement

@@ -24,8 +24,8 @@ public class UnaryExpression extends Node implements Expression {
     @Override
     public void appendStringRepresentationToBuilder(OutputBuilder outputBuilder, int depth) {
         outputBuilder.append(this.getClass(), depth)
-                .append("operator: \n'" + operator + "'", depth)
-                .append("expression:", depth);
-        expression.appendStringRepresentationToBuilder(outputBuilder, depth);
+                .append("operator: '" + operator + "'", depth + 1)
+                .append("expression:", depth + 1);
+        expression.appendStringRepresentationToBuilder(outputBuilder, depth + 2);
     }
 }

@@ -2,6 +2,7 @@ package cz.honzakasik.upol.prkl.heroc.model.statement;
 
 import cz.honzakasik.upol.prkl.heroc.model.Node;
 import cz.honzakasik.upol.prkl.heroc.model.expression.Expression;
+import cz.honzakasik.upol.prkl.heroc.printer.OutputBuilder;
 
 import java.util.Optional;
 
@@ -41,5 +42,11 @@ public class JumpStatement extends Node implements Statement {
 
     public Optional<Expression> getReturnExpression() {
         return returnExpression;
+    }
+
+    @Override
+    public void appendStringRepresentationToBuilder(OutputBuilder outputBuilder, int depth) {
+        outputBuilder.append(JumpStatement.class, depth)
+                .append("type: " + type.getKeyword(), depth + 1);
     }
 }

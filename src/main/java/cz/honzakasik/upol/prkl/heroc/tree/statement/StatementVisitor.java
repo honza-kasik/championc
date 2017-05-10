@@ -53,7 +53,7 @@ public class StatementVisitor extends HerocBaseVisitor<Statement> {
             type = JumpStatement.Type.CONTINUE;
         }
 
-        if (ctx.getChildCount() > 1) {
+        if (ctx.expression() != null) {
             return new JumpStatement(type, ctx.expression().accept(new ExpressionVisitor(environment)));
         } else {
             return new JumpStatement(type);

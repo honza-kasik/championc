@@ -31,9 +31,10 @@ public class BinaryExpression extends Node implements Expression{
     @Override
     public void appendStringRepresentationToBuilder(OutputBuilder outputBuilder, int depth) {
         outputBuilder.append(this.getClass().getSimpleName() + ":", depth)
-                .append("leftSide:", depth);
-        leftSide.appendStringRepresentationToBuilder(outputBuilder, depth + 1);
-        outputBuilder.append("rightSide:", depth);
-        rightSide.appendStringRepresentationToBuilder(outputBuilder, depth + 1);
+                .append("operator: " + operator, depth + 1)
+                .append("leftSide:", depth + 1);
+        leftSide.appendStringRepresentationToBuilder(outputBuilder, depth + 2);
+        outputBuilder.append("rightSide:", depth + 1);
+        rightSide.appendStringRepresentationToBuilder(outputBuilder, depth + 2);
     }
 }

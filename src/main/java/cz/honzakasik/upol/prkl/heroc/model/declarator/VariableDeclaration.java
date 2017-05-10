@@ -11,8 +11,8 @@ import java.util.Optional;
  */
 public class VariableDeclaration extends Node {
 
-    private Optional<Pointer> pointer;
-    private String name;
+    private final Optional<Pointer> pointer;
+    private final String name;
 
     public VariableDeclaration(String name) {
         this.pointer = Optional.empty();
@@ -20,7 +20,7 @@ public class VariableDeclaration extends Node {
     }
 
     public VariableDeclaration(String name, Pointer pointer) {
-        this(name);
+        this.name = name;
         this.pointer = Optional.of(pointer);
     }
 
@@ -34,10 +34,10 @@ public class VariableDeclaration extends Node {
 
     @Override
     public void appendStringRepresentationToBuilder(OutputBuilder outputBuilder, int depth) {
-        outputBuilder.append(this.getClass().getSimpleName() + ":" +
+        outputBuilder.append(this.getClass().getSimpleName() + " " +
                         "{" +
-                        "isPointer:" + (pointer.isPresent() ? "true" : "false") + "," +
-                        "name: " + name +
+                        "name: " + name + ", " +
+                        "isPointer: " + pointer.isPresent() +
                         "}",
                 depth
         );

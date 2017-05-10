@@ -11,7 +11,7 @@ SWITCH : 'switch';
 DEFAULT : 'default';
 IF : 'if';
 ELSE : 'else';
-BREAK : 'brak';
+BREAK : 'break';
 RETURN : 'return';
 CONTINUE : 'continue';
 ENUM : 'enum';

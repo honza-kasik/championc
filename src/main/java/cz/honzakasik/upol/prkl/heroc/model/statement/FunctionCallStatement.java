@@ -27,12 +27,9 @@ public class FunctionCallStatement extends Node implements Statement {
     @Override
     public void appendStringRepresentationToBuilder(OutputBuilder outputBuilder, int depth) {
         outputBuilder.append(this.getClass().getSimpleName(), depth)
-                .append("functionName: '" + functionName + "'", depth + 1)
-                .append("arguments: ", depth + 1);
-        if (arguments.size() == 0) {
-            outputBuilder.append("there are no arguments!", depth + 2);
-        } else {
-            //outputBuilder.append(String.valueOf(arguments.get(0)), depth + 2);
+                .append("functionName: '" + functionName + "'", depth + 1);
+        if (arguments.size() != 0) {
+            outputBuilder.append("arguments: ", depth + 1);
             arguments.forEach(expression -> expression.appendStringRepresentationToBuilder(outputBuilder, depth + 2));
         }
     }

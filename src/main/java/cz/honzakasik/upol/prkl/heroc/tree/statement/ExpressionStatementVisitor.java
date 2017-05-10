@@ -16,6 +16,10 @@ public class ExpressionStatementVisitor extends HerocBaseVisitor<ExpressionState
 
     @Override
     public ExpressionStatement visitExpressionStatement(HerocParser.ExpressionStatementContext ctx) {
-        return new ExpressionStatement(ctx.expression().accept(new ExpressionVisitor(environment)));
+        if (ctx.expression() != null) {
+            return new ExpressionStatement(ctx.expression().accept(new ExpressionVisitor(environment)));
+        } else {
+            return new ExpressionStatement();
+        }
     }
 }

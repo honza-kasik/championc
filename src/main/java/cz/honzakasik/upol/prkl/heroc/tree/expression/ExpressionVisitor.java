@@ -6,6 +6,7 @@ import cz.honzakasik.upol.prkl.heroc.environment.Environment;
 import cz.honzakasik.upol.prkl.heroc.model.Value;
 import cz.honzakasik.upol.prkl.heroc.model.VariableReference;
 import cz.honzakasik.upol.prkl.heroc.model.expression.*;
+import cz.honzakasik.upol.prkl.heroc.tree.PointerVisitor;
 
 public class ExpressionVisitor extends HerocBaseVisitor<Expression> {
 
@@ -18,7 +19,11 @@ public class ExpressionVisitor extends HerocBaseVisitor<Expression> {
     @Override
     public Expression visitPrimaryExpression(HerocParser.PrimaryExpressionContext ctx) {
         if (ctx.ID() != null) {
-            return new VariableReference(ctx.ID().getText());
+            if (ctx.pointer() == null) {
+                return new VariableReference(ctx.ID().getText());
+            } else {
+                return new VariableReference(ctx.ID().getText(), ctx.pointer().accept(new PointerVisitor(environment)));
+            }
         } else if (ctx.NUMBER() != null) {
             return new Value(ctx.NUMBER().getText());
         } else if (ctx.STRING() != null) {

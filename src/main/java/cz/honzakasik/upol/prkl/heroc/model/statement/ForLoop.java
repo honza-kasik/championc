@@ -36,6 +36,20 @@ public class ForLoop extends Node implements Statement{
 
     @Override
     public void appendStringRepresentationToBuilder(OutputBuilder outputBuilder, int depth) {
-        //TODO
+        outputBuilder.append(ForLoop.class, depth);
+        if (initializer != null) {
+            outputBuilder.append("initalizer: ", depth + 1);
+            initializer.appendStringRepresentationToBuilder(outputBuilder, depth + 2);
+        }
+        if (condition != null) {
+            outputBuilder.append("condition: ", depth + 1);
+            condition.appendStringRepresentationToBuilder(outputBuilder, depth + 2);
+        }
+        if (afterCycle != null) {
+            outputBuilder.append("iterator: ", depth + 1);
+            afterCycle.appendStringRepresentationToBuilder(outputBuilder, depth + 2);
+        }
+        outputBuilder.append("cycle: ", depth + 1);
+        cycle.appendStringRepresentationToBuilder(outputBuilder, depth + 2);
     }
 }
