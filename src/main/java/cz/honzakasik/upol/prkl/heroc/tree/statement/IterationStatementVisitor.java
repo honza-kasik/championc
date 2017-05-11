@@ -59,7 +59,6 @@ public class IterationStatementVisitor extends HerocBaseVisitor<Statement> {
                     ctx.forCondition.accept(new ExpressionVisitor(environment));
             Expression iterator = ctx.forIterator == null ? null :
                     ctx.forIterator.accept(new ExpressionVisitor(environment));
-            log.info("VISITED FOR LOOP!");
             return new ForLoop(
                     declarator,
                     condition,

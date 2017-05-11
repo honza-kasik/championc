@@ -144,6 +144,11 @@ public class ExpressionVisitor extends HerocBaseVisitor<Expression> {
     }
 
     @Override
+    public Expression visitFunctionCallExpressionL(HerocParser.FunctionCallExpressionLContext ctx) {
+        return visitFunctionCallExpression(ctx.functionCallExpression());
+    }
+
+    @Override
     public Expression visitFunctionCallExpression(HerocParser.FunctionCallExpressionContext ctx) {
         List<Expression> argumentList = new LinkedList<>();
 
